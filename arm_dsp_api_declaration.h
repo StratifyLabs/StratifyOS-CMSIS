@@ -1,0 +1,541 @@
+
+#include "arm_dsp_api.h"
+
+#if ARM_DSP_API_IGNORE_Q7 != 0
+#define arm_fir_q7 0
+#define arm_fir_init_q7 0
+#define arm_mult_q7 0
+#define arm_add_q7 0
+#define arm_sub_q7 0
+#define arm_scale_q7 0
+#define arm_abs_q7 0
+#define arm_dot_prod_q7 0
+#define arm_shift_q7 0
+#define arm_offset_q7 0
+#define arm_negate_q7 0
+#define arm_copy_q7 0
+#define arm_fill_q7 0
+#define arm_conv_opt_q7 0
+#define arm_conv_q7 0
+#define arm_conv_partial_opt_q7 0
+#define arm_conv_partial_q7 0
+#define arm_correlate_opt_q7 0
+#define arm_correlate_q7 0
+#define arm_fir_sparse_q7 0
+#define arm_fir_sparse_init_q7 0
+#define arm_power_q7 0
+#define arm_mean_q7 0
+#define arm_min_q7 0
+#define arm_max_q7 0
+#endif
+
+#if ARM_DSP_API_IGNORE_Q15 != 0
+#define arm_fir_q15 0
+#define arm_fir_fast_q15 0
+#define arm_fir_init_q15 0
+#define arm_biquad_cascade_df1_q15 0
+#define arm_biquad_cascade_df1_init_q15 0
+#define arm_biquad_cascade_df1_fast_q15 0
+#define arm_mat_add_q15 0
+#define arm_mat_cmplx_mult_q15 0
+#define arm_mat_trans_q15 0
+#define arm_mat_mult_q15 0
+#define arm_mat_mult_fast_q15 0
+#define arm_mat_sub_q15 0
+#define arm_mat_scale_q15 0
+#define arm_mat_init_q15 0
+#define arm_pid_init_q15 0
+#define arm_pid_reset_q15 0
+#define arm_mult_q15 0
+#define arm_cfft_q15 0
+#define arm_rfft_init_q15 0
+#define arm_rfft_q15 0
+#define arm_dct4_init_q15 0
+#define arm_dct4_q15 0
+#define arm_add_q15 0
+#define arm_sub_q15 0
+#define arm_scale_q15 0
+#define arm_abs_q15 0
+#define arm_dot_prod_q15 0
+#define arm_shift_q15 0
+#define arm_offset_q15 0
+#define arm_negate_q15 0
+#define arm_copy_q15 0
+#define arm_fill_q15 0
+#define arm_conv_opt_q15 0
+#define arm_conv_q15 0
+#define arm_conv_fast_q15 0
+#define arm_conv_fast_opt_q15 0
+#define arm_conv_partial_opt_q15 0
+#define arm_conv_partial_q15 0
+#define arm_conv_partial_fast_q15 0
+#define arm_conv_partial_fast_opt_q15 0
+#define arm_fir_decimate_q15 0
+#define arm_fir_decimate_fast_q15 0
+#define arm_fir_decimate_init_q15 0
+#define arm_fir_interpolate_q15 0
+#define arm_fir_interpolate_init_q15 0
+#define arm_fir_lattice_init_q15 0
+#define arm_fir_lattice_q15 0
+#define arm_iir_lattice_q15 0
+#define arm_iir_lattice_init_q15 0
+#define arm_lms_init_q15 0
+#define arm_lms_q15 0
+#define arm_lms_norm_q15 0
+#define arm_lms_norm_init_q15 0
+#define arm_correlate_opt_q15 0
+#define arm_correlate_q15 0
+#define arm_correlate_fast_q15 0
+#define arm_correlate_fast_opt_q15 0
+#define arm_fir_sparse_q15 0
+#define arm_fir_sparse_init_q15 0
+#define arm_cmplx_conj_q15 0
+#define arm_cmplx_mag_squared_q15 0
+#define arm_sin_q15 0
+#define arm_cos_q15 0
+#define arm_sqrt_q15 0
+#define arm_power_q15 0
+#define arm_mean_q15 0
+#define arm_var_q15 0
+#define arm_rms_q15 0
+#define arm_std_q15 0
+#define arm_cmplx_mag_q15 0
+#define arm_cmplx_dot_prod_q15 0
+#define arm_cmplx_mult_real_q15 0
+#define arm_min_q15 0
+#define arm_max_q15 0
+#define arm_cmplx_mult_cmplx_q15 0
+#endif
+
+#if ARM_DSP_API_IGNORE_Q31 != 0
+#define arm_fir_q31 0
+#define arm_fir_fast_q31 0
+#define arm_fir_init_q31 0
+#define arm_biquad_cascade_df1_q31 0
+#define arm_biquad_cascade_df1_fast_q31 0
+#define arm_biquad_cascade_df1_init_q31 0
+#define arm_mat_add_q31 0
+#define arm_mat_cmplx_mult_q31 0
+#define arm_mat_trans_q31 0
+#define arm_mat_mult_q31 0
+#define arm_mat_mult_fast_q31 0
+#define arm_mat_sub_q31 0
+#define arm_mat_scale_q31 0
+#define arm_mat_init_q31 0
+#define arm_pid_init_q31 0
+#define arm_pid_reset_q31 0
+#define arm_mult_q31 0
+#define arm_cfft_q31 0
+#define arm_rfft_init_q31 0
+#define arm_rfft_q31 0
+#define arm_dct4_init_q31 0
+#define arm_dct4_q31 0
+#define arm_add_q31 0
+#define arm_sub_q31 0
+#define arm_scale_q31 0
+#define arm_abs_q31 0
+#define arm_dot_prod_q31 0
+#define arm_shift_q31 0
+#define arm_offset_q31 0
+#define arm_negate_q31 0
+#define arm_copy_q31 0
+#define arm_fill_q31 0
+#define arm_conv_q31 0
+#define arm_conv_fast_q31 0
+#define arm_conv_partial_q31 0
+#define arm_conv_partial_fast_q31 0
+#define arm_fir_decimate_q31 0
+#define arm_fir_decimate_fast_q31 0
+#define arm_fir_decimate_init_q31 0
+#define arm_fir_interpolate_q31 0
+#define arm_fir_interpolate_init_q31 0
+#define arm_biquad_cas_df1_32x64_q31 0
+#define arm_biquad_cas_df1_32x64_init_q31 0
+#define arm_fir_lattice_init_q31 0
+#define arm_fir_lattice_q31 0
+#define arm_iir_lattice_q31 0
+#define arm_iir_lattice_init_q31 0
+#define arm_lms_q31 0
+#define arm_lms_init_q31 0
+#define arm_lms_norm_q31 0
+#define arm_lms_norm_init_q31 0
+#define arm_correlate_q31 0
+#define arm_correlate_fast_q31 0
+#define arm_fir_sparse_q31 0
+#define arm_fir_sparse_init_q31 0
+#define arm_sin_cos_q31 0
+#define arm_cmplx_conj_q31 0
+#define arm_cmplx_mag_squared_q31 0
+#define arm_sin_q31 0
+#define arm_cos_q31 0
+#define arm_sqrt_q31 0
+#define arm_power_q31 0
+#define arm_mean_q31 0
+#define arm_var_q31 0
+#define arm_rms_q31 0
+#define arm_std_q31 0
+#define arm_cmplx_mag_q31 0
+#define arm_cmplx_dot_prod_q31 0
+#define arm_cmplx_mult_real_q31 0
+#define arm_min_q31 0
+#define arm_max_q31 0
+#define arm_cmplx_mult_cmplx_q31 0
+#endif
+
+#if ARM_DSP_API_IGNORE_f32 != 0
+#define arm_fir_f32 0
+#define arm_fir_init_f32 0
+#define arm_biquad_cascade_df1_f32 0
+#define arm_biquad_cascade_df1_init_f32 0
+#define arm_mat_add_f32 0
+#define arm_mat_cmplx_mult_f32 0
+#define arm_mat_trans_f32 0
+#define arm_mat_mult_f32 0
+#define arm_mat_sub_f32 0
+#define arm_mat_scale_f32 0
+#define arm_mat_init_f32 0
+#define arm_pid_init_f32 0
+#define arm_pid_reset_f32 0
+#define arm_mult_f32 0
+#define arm_cfft_f32 0
+#define arm_rfft_init_f32 0
+#define arm_rfft_f32 0
+#define arm_rfft_fast_init_f32 0
+#define arm_rfft_fast_f32 0
+#define arm_dct4_init_f32 0
+#define arm_dct4_f32 0
+#define arm_add_f32 0
+#define arm_sub_f32 0
+#define arm_scale_f32 0
+#define arm_abs_f32 0
+#define arm_dot_prod_f32 0
+#define arm_offset_f32 0
+#define arm_negate_f32 0
+#define arm_copy_f32 0
+#define arm_fill_f32 0
+#define arm_conv_f32 0
+#define arm_conv_partial_f32 0
+#define arm_fir_decimate_f32 0
+#define arm_fir_decimate_init_f32 0
+#define arm_fir_interpolate_f32 0
+#define arm_fir_interpolate_init_f32 0
+#define arm_biquad_cascade_df2T_f32 0
+#define arm_biquad_cascade_stereo_df2T_f32 0
+#define arm_biquad_cascade_df2T_init_f32 0
+#define arm_biquad_cascade_stereo_df2T_init_f32 0
+#define arm_fir_lattice_init_f32 0
+#define arm_fir_lattice_f32 0
+#define arm_iir_lattice_f32 0
+#define arm_iir_lattice_init_f32 0
+#define arm_lms_f32 0
+#define arm_lms_init_f32 0
+#define arm_lms_norm_f32 0
+#define arm_lms_norm_init_f32 0
+#define arm_correlate_f32 0
+#define arm_fir_sparse_f32 0
+#define arm_fir_sparse_init_f32 0
+#define arm_sin_cos_f32 0
+#define arm_cmplx_conj_f32 0
+#define arm_cmplx_mag_squared_f32 0
+#define arm_mat_inverse_f32 0
+#define arm_sin_f32 0
+#define arm_cos_f32 0
+#define arm_power_f32 0
+#define arm_mean_f32 0
+#define arm_var_f32 0
+#define arm_rms_f32 0
+#define arm_std_f32 0
+#define arm_cmplx_mag_f32 0
+#define arm_cmplx_dot_prod_f32 0
+#define arm_cmplx_mult_real_f32 0
+#define arm_min_f32 0
+#define arm_max_f32 0
+#define arm_cmplx_mult_cmplx_f32 0
+#endif
+
+#if ARM_DSP_API_IGNORE_f64 != 0
+#define arm_biquad_cascade_df2T_f64 0
+#define arm_biquad_cascade_df2T_init_f64 0
+#define arm_mat_inverse_f64 0
+#endif
+
+#if ARM_DSP_API_IGNORE_CONVERSIONS != 0
+#define arm_float_to_q31 0
+#define arm_float_to_q15 0
+#define arm_float_to_q7 0
+#define arm_q31_to_q15 0
+#define arm_q31_to_q7 0
+#define arm_q15_to_float 0
+#define arm_q15_to_q31 0
+#define arm_q15_to_q7 0
+#endif
+
+const arm_dsp_api_q7_t arm_dsp_api_q7 = {
+		.fir_q7 = arm_fir_q7,
+		.fir_init_q7 = arm_fir_init_q7,
+		.mult_q7 = arm_mult_q7,
+		.add_q7 = arm_add_q7,
+		.sub_q7 = arm_sub_q7,
+		.scale_q7 = arm_scale_q7,
+		.abs_q7 = arm_abs_q7,
+		.dot_prod_q7 = arm_dot_prod_q7,
+		.shift_q7 = arm_shift_q7,
+		.offset_q7 = arm_offset_q7,
+		.negate_q7 = arm_negate_q7,
+		.copy_q7 = arm_copy_q7,
+		.fill_q7 = arm_fill_q7,
+		.conv_opt_q7 = arm_conv_opt_q7,
+		.conv_q7 = arm_conv_q7,
+		.conv_partial_opt_q7 = arm_conv_partial_opt_q7,
+		.conv_partial_q7 = arm_conv_partial_q7,
+		.correlate_opt_q7 = arm_correlate_opt_q7,
+		.correlate_q7 = arm_correlate_q7,
+		.fir_sparse_q7 = arm_fir_sparse_q7,
+		.fir_sparse_init_q7 = arm_fir_sparse_init_q7,
+		.power_q7 = arm_power_q7,
+		.mean_q7 = arm_mean_q7,
+		.min_q7 = arm_min_q7,
+		.max_q7 = arm_max_q7
+};
+
+
+const arm_dsp_api_q15_t arm_dsp_api_q15 = {
+		.fir_q15 = arm_fir_q15,
+		.fir_fast_q15 = arm_fir_fast_q15,
+		.fir_init_q15 = arm_fir_init_q15,
+		.biquad_cascade_df1_q15 = arm_biquad_cascade_df1_q15,
+		.biquad_cascade_df1_init_q15 = arm_biquad_cascade_df1_init_q15,
+		.biquad_cascade_df1_fast_q15 = arm_biquad_cascade_df1_fast_q15,
+		.mat_add_q15 = arm_mat_add_q15,
+		.mat_cmplx_mult_q15 = arm_mat_cmplx_mult_q15,
+		.mat_trans_q15 = arm_mat_trans_q15,
+		.mat_mult_q15 = arm_mat_mult_q15,
+		.mat_mult_fast_q15 = arm_mat_mult_fast_q15,
+		.mat_sub_q15 = arm_mat_sub_q15,
+		.mat_scale_q15 = arm_mat_scale_q15,
+		.mat_init_q15 = arm_mat_init_q15,
+		.pid_init_q15 = arm_pid_init_q15,
+		.pid_reset_q15 = arm_pid_reset_q15,
+		.mult_q15 = arm_mult_q15,
+		.cfft_q15 = arm_cfft_q15,
+		.rfft_init_q15 = arm_rfft_init_q15,
+		.rfft_q15 = arm_rfft_q15,
+		.dct4_init_q15 = arm_dct4_init_q15,
+		.dct4_q15 = arm_dct4_q15,
+		.add_q15 = arm_add_q15,
+		.sub_q15 = arm_sub_q15,
+		.scale_q15 = arm_scale_q15,
+		.abs_q15 = arm_abs_q15,
+		.dot_prod_q15 = arm_dot_prod_q15,
+		.shift_q15 = arm_shift_q15,
+		.offset_q15 = arm_offset_q15,
+		.negate_q15 = arm_negate_q15,
+		.copy_q15 = arm_copy_q15,
+		.fill_q15 = arm_fill_q15,
+		.conv_opt_q15 = arm_conv_opt_q15,
+		.conv_q15 = arm_conv_q15,
+		.conv_fast_q15 = arm_conv_fast_q15,
+		.conv_fast_opt_q15 = arm_conv_fast_opt_q15,
+		.conv_partial_opt_q15 = arm_conv_partial_opt_q15,
+		.conv_partial_q15 = arm_conv_partial_q15,
+		.conv_partial_fast_q15 = arm_conv_partial_fast_q15,
+		.conv_partial_fast_opt_q15 = arm_conv_partial_fast_opt_q15,
+		.fir_decimate_q15 = arm_fir_decimate_q15,
+		.fir_decimate_fast_q15 = arm_fir_decimate_fast_q15,
+		.fir_decimate_init_q15 = arm_fir_decimate_init_q15,
+		.fir_interpolate_q15 = arm_fir_interpolate_q15,
+		.fir_interpolate_init_q15 = arm_fir_interpolate_init_q15,
+		.fir_lattice_init_q15 = arm_fir_lattice_init_q15,
+		.fir_lattice_q15 = arm_fir_lattice_q15,
+		.iir_lattice_q15 = arm_iir_lattice_q15,
+		.iir_lattice_init_q15 = arm_iir_lattice_init_q15,
+		.lms_init_q15 = arm_lms_init_q15,
+		.lms_q15 = arm_lms_q15,
+		.lms_norm_q15 = arm_lms_norm_q15,
+		.lms_norm_init_q15 = arm_lms_norm_init_q15,
+		.correlate_opt_q15 = arm_correlate_opt_q15,
+		.correlate_q15 = arm_correlate_q15,
+		.correlate_fast_q15 = arm_correlate_fast_q15,
+		.correlate_fast_opt_q15 = arm_correlate_fast_opt_q15,
+		.fir_sparse_q15 = arm_fir_sparse_q15,
+		.fir_sparse_init_q15 = arm_fir_sparse_init_q15,
+		.cmplx_conj_q15 = arm_cmplx_conj_q15,
+		.cmplx_mag_squared_q15 = arm_cmplx_mag_squared_q15,
+		.sin_q15 = arm_sin_q15,
+		.cos_q15 = arm_cos_q15,
+		.sqrt_q15 = arm_sqrt_q15,
+		.power_q15 = arm_power_q15,
+		.mean_q15 = arm_mean_q15,
+		.var_q15 = arm_var_q15,
+		.rms_q15 = arm_rms_q15,
+		.std_q15 = arm_std_q15,
+		.cmplx_mag_q15 = arm_cmplx_mag_q15,
+		.cmplx_dot_prod_q15 = arm_cmplx_dot_prod_q15,
+		.cmplx_mult_real_q15 = arm_cmplx_mult_real_q15,
+		.min_q15 = arm_min_q15,
+		.max_q15 = arm_max_q15,
+		.cmplx_mult_cmplx_q15 = arm_cmplx_mult_cmplx_q15,
+};
+
+const arm_dsp_api_q31_t arm_dsp_api_q31 = {
+		.fir_q31 = arm_fir_q31,
+		.fir_fast_q31 = arm_fir_fast_q31,
+		.fir_init_q31 = arm_fir_init_q31,
+		.biquad_cascade_df1_q31 = arm_biquad_cascade_df1_q31,
+		.biquad_cascade_df1_fast_q31 = arm_biquad_cascade_df1_fast_q31,
+		.biquad_cascade_df1_init_q31 = arm_biquad_cascade_df1_init_q31,
+		.mat_add_q31 = arm_mat_add_q31,
+		.mat_cmplx_mult_q31 = arm_mat_cmplx_mult_q31,
+		.mat_trans_q31 = arm_mat_trans_q31,
+		.mat_mult_q31 = arm_mat_mult_q31,
+		.mat_mult_fast_q31 = arm_mat_mult_fast_q31,
+		.mat_sub_q31 = arm_mat_sub_q31,
+		.mat_scale_q31 = arm_mat_scale_q31,
+		.mat_init_q31 = arm_mat_init_q31,
+		.pid_init_q31 = arm_pid_init_q31,
+		.pid_reset_q31 = arm_pid_reset_q31,
+		.mult_q31 = arm_mult_q31,
+		.cfft_q31 = arm_cfft_q31,
+		.rfft_init_q31 = arm_rfft_init_q31,
+		.rfft_q31 = arm_rfft_q31,
+		.dct4_init_q31 = arm_dct4_init_q31,
+		.dct4_q31 = arm_dct4_q31,
+		.add_q31 = arm_add_q31,
+		.sub_q31 = arm_sub_q31,
+		.scale_q31 = arm_scale_q31,
+		.abs_q31 = arm_abs_q31,
+		.dot_prod_q31 = arm_dot_prod_q31,
+		.shift_q31 = arm_shift_q31,
+		.offset_q31 = arm_offset_q31,
+		.negate_q31 = arm_negate_q31,
+		.copy_q31 = arm_copy_q31,
+		.fill_q31 = arm_fill_q31,
+		.conv_q31 = arm_conv_q31,
+		.conv_fast_q31 = arm_conv_fast_q31,
+		.conv_partial_q31 = arm_conv_partial_q31,
+		.conv_partial_fast_q31 = arm_conv_partial_fast_q31,
+		.fir_decimate_q31 = arm_fir_decimate_q31,
+		.fir_decimate_fast_q31 = arm_fir_decimate_fast_q31,
+		.fir_decimate_init_q31 = arm_fir_decimate_init_q31,
+		.fir_interpolate_q31 = arm_fir_interpolate_q31,
+		.fir_interpolate_init_q31 = arm_fir_interpolate_init_q31,
+		.biquad_cas_df1_32x64_q31 = arm_biquad_cas_df1_32x64_q31,
+		.biquad_cas_df1_32x64_init_q31 = arm_biquad_cas_df1_32x64_init_q31,
+		.fir_lattice_init_q31 = arm_fir_lattice_init_q31,
+		.fir_lattice_q31 = arm_fir_lattice_q31,
+		.iir_lattice_q31 = arm_iir_lattice_q31,
+		.iir_lattice_init_q31 = arm_iir_lattice_init_q31,
+		.lms_q31 = arm_lms_q31,
+		.lms_init_q31 = arm_lms_init_q31,
+		.lms_norm_q31 = arm_lms_norm_q31,
+		.lms_norm_init_q31 = arm_lms_norm_init_q31,
+		.correlate_q31 = arm_correlate_q31,
+		.correlate_fast_q31 = arm_correlate_fast_q31,
+		.fir_sparse_q31 = arm_fir_sparse_q31,
+		.fir_sparse_init_q31 = arm_fir_sparse_init_q31,
+		.sin_cos_q31 = arm_sin_cos_q31,
+		.cmplx_conj_q31 = arm_cmplx_conj_q31,
+		.cmplx_mag_squared_q31 = arm_cmplx_mag_squared_q31,
+		.sin_q31 = arm_sin_q31,
+		.cos_q31 = arm_cos_q31,
+		.sqrt_q31 = arm_sqrt_q31,
+		.power_q31 = arm_power_q31,
+		.mean_q31 = arm_mean_q31,
+		.var_q31 = arm_var_q31,
+		.rms_q31 = arm_rms_q31,
+		.std_q31 = arm_std_q31,
+		.cmplx_mag_q31 = arm_cmplx_mag_q31,
+		.cmplx_dot_prod_q31 = arm_cmplx_dot_prod_q31,
+		.cmplx_mult_real_q31 = arm_cmplx_mult_real_q31,
+		.min_q31 = arm_min_q31,
+		.max_q31 = arm_max_q31,
+		.cmplx_mult_cmplx_q31 = arm_cmplx_mult_cmplx_q31
+} arm_dsp_api_q31_t;
+
+const arm_dsp_api_f32_t arm_dsp_api_f32 = {
+		.fir_f32 = arm_fir_f32,
+		.fir_init_f32 = arm_fir_init_f32,
+		.biquad_cascade_df1_f32 = arm_biquad_cascade_df1_f32,
+		.biquad_cascade_df1_init_f32 = arm_biquad_cascade_df1_init_f32,
+		.mat_add_f32 = arm_mat_add_f32,
+		.mat_cmplx_mult_f32 = arm_mat_cmplx_mult_f32,
+		.mat_trans_f32 = arm_mat_trans_f32,
+		.mat_mult_f32 = arm_mat_mult_f32,
+		.mat_sub_f32 = arm_mat_sub_f32,
+		.mat_scale_f32 = arm_mat_scale_f32,
+		.mat_init_f32 = arm_mat_init_f32,
+		.pid_init_f32 = arm_pid_init_f32,
+		.pid_reset_f32 = arm_pid_reset_f32,
+		.mult_f32 = arm_mult_f32,
+		.cfft_f32 = arm_cfft_f32,
+		.rfft_init_f32 = arm_rfft_init_f32,
+		.rfft_f32 = arm_rfft_f32,
+		.rfft_fast_init_f32 = arm_rfft_fast_init_f32,
+		.rfft_fast_f32 = arm_rfft_fast_f32,
+		.dct4_init_f32 = arm_dct4_init_f32,
+		.dct4_f32 = arm_dct4_f32,
+		.add_f32 = arm_add_f32,
+		.sub_f32 = arm_sub_f32,
+		.scale_f32 = arm_scale_f32,
+		.abs_f32 = arm_abs_f32,
+		.dot_prod_f32 = arm_dot_prod_f32,
+		.offset_f32 = arm_offset_f32,
+		.negate_f32 = arm_negate_f32,
+		.copy_f32 = arm_copy_f32,
+		.fill_f32 = arm_fill_f32,
+		.conv_f32 = arm_conv_f32,
+		.conv_partial_f32 = arm_conv_partial_f32,
+		.fir_decimate_f32 = arm_fir_decimate_f32,
+		.fir_decimate_init_f32 = arm_fir_decimate_init_f32,
+		.fir_interpolate_f32 = arm_fir_interpolate_f32,
+		.fir_interpolate_init_f32 = arm_fir_interpolate_init_f32,
+		.biquad_cascade_df2T_f32 = arm_biquad_cascade_df2T_f32,
+		.biquad_cascade_stereo_df2T_f32 = arm_biquad_cascade_stereo_df2T_f32,
+		.biquad_cascade_df2T_init_f32 = arm_biquad_cascade_df2T_init_f32,
+		.biquad_cascade_stereo_df2T_init_f32 = arm_biquad_cascade_stereo_df2T_init_f32,
+		.fir_lattice_init_f32 = arm_fir_lattice_init_f32,
+		.fir_lattice_f32 = arm_fir_lattice_f32,
+		.iir_lattice_f32 = arm_iir_lattice_f32,
+		.iir_lattice_init_f32 = arm_iir_lattice_init_f32,
+		.lms_f32 = arm_lms_f32,
+		.lms_init_f32 = arm_lms_init_f32,
+		.lms_norm_f32 = arm_lms_norm_f32,
+		.lms_norm_init_f32 = arm_lms_norm_init_f32,
+		.correlate_f32 = arm_correlate_f32,
+		.fir_sparse_f32 = arm_fir_sparse_f32,
+		.fir_sparse_init_f32 = arm_fir_sparse_init_f32,
+		.sin_cos_f32 = arm_sin_cos_f32,
+		.cmplx_conj_f32 = arm_cmplx_conj_f32,
+		.cmplx_mag_squared_f32 = arm_cmplx_mag_squared_f32,
+		.mat_inverse_f32 = arm_mat_inverse_f32,
+		.sin_f32 = arm_sin_f32,
+		.cos_f32 = arm_cos_f32,
+		.power_f32 = arm_power_f32,
+		.mean_f32 = arm_mean_f32,
+		.var_f32 = arm_var_f32,
+		.rms_f32 = arm_rms_f32,
+		.std_f32 = arm_std_f32,
+		.cmplx_mag_f32 = arm_cmplx_mag_f32,
+		.cmplx_dot_prod_f32 = arm_cmplx_dot_prod_f32,
+		.cmplx_mult_real_f32 = arm_cmplx_mult_real_f32,
+		.min_f32 = arm_min_f32,
+		.max_f32 = arm_max_f32,
+		.cmplx_mult_cmplx_f32 = arm_cmplx_mult_cmplx_f32,
+};
+
+const arm_dsp_api_f64_t arm_dsp_api_f64 = {
+		.biquad_cascade_df2T_f64 = arm_biquad_cascade_df2T_f64,
+		.biquad_cascade_df2T_init_f64 = arm_biquad_cascade_df2T_init_f64,
+		.mat_inverse_f64 = arm_mat_inverse_f64,
+};
+
+const arm_dsp_conversion_api_t arm_dsp_conversion_api = {
+		.float_to_q31 = arm_float_to_q31,
+		.float_to_q15 = arm_float_to_q15,
+		.float_to_q7 = arm_float_to_q7,
+		.q31_to_q15 = arm_q31_to_q15,
+		.q31_to_q7 = arm_q31_to_q7,
+		.q15_to_float = arm_q15_to_float,
+		.q15_to_q31 = arm_q15_to_q31,
+		.q15_to_q7 = arm_q15_to_q7,
+};

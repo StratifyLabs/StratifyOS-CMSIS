@@ -18,7 +18,7 @@ foreach(FOLDER ${FOLDER_LIST})
     list(APPEND SOURCELIST ${SOURCES})
 endforeach()
 
-set(SOS_LIB_SOURCELIST ${SOURCELIST})
+set(SOS_LIB_SOURCELIST ${SOURCELIST} ${CMAKE_SOURCE_DIR}/arm_dsp_api.h ${CMAKE_SOURCE_DIR}/arm_dsp_api_declaration.h)
 
 # Linking with the kernel
 set(SOS_LIB_TYPE release)
