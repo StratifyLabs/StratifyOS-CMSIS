@@ -19,7 +19,7 @@ elseif( ${SOS_BUILD_CONFIG} STREQUAL link )
   set(CMAKE_TOOLCHAIN_FILE ${SOS_TOOLCHAIN_CMAKE_PATH}/link-toolchain.cmake)
 endif()
 
-set(SOS_LIB_NAME cmsis_dsp_sos)
+set(SOS_LIB_NAME arm_dsp_sos)
 project(${SOS_LIB_NAME} CXX C ASM)
 
 include( ${CMAKE_SOURCE_DIR}/${SOS_BUILD_CONFIG}.cmake )
