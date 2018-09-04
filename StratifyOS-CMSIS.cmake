@@ -27,5 +27,5 @@ set(FOLDER_LIST
 )
 
 foreach(FOLDER ${FOLDER_LIST})
-    execute_process(COMMAND cmake -DPATH=${FOLDER} -P /Applications/StratifyLabs-SDK/Tools/gcc/arm-none-eabi/cmake/generate_sources.cmake)
+    execute_process(COMMAND cmake -DPATH=${FOLDER} -P ${SOS_TOOLCHAIN_CMAKE_PATH}/generate_sources.cmake)
 endforeach()
