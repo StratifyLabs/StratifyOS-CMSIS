@@ -30,6 +30,7 @@ set(SOS_LIB_DEFINITIONS -DSOS_ARM_DSP_FFT_MAX_SIZE=65536)
 include(${SOS_TOOLCHAIN_CMAKE_PATH}/sos-lib-std.cmake)
 
 # Linking with the kernel -- FFT size limits 512
+#[[
 set(SOS_LIB_TYPE release)
 set(SOS_LIB_INCLUDE_DIRECTORIES ${SOURCE_DIR}/../Include ${TOOLCHAIN_INC_DIR}/mcu/arch/cmsis)
 set(SOS_LIB_OPTION kernel_fft_512)
@@ -63,6 +64,7 @@ set(SOS_LIB_TYPE release)
 set(SOS_LIB_BUILD_FLAGS -mlong-calls)
 set(SOS_LIB_DEFINITIONS -DSOS_ARM_DSP_FFT_MAX_SIZE=65536)
 include(${SOS_TOOLCHAIN_CMAKE_PATH}/sos-lib-std.cmake)
+#]]
 
 install(DIRECTORY ${SOURCE_DIR}/../Include/ DESTINATION ${TOOLCHAIN_INC_DIR}/mcu/arch/cmsis)
 install(FILES ${CMAKE_SOURCE_DIR}/arm_dsp_api.h ${CMAKE_SOURCE_DIR}/arm_dsp_api_declaration.h DESTINATION include)
