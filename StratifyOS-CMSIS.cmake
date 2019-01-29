@@ -11,7 +11,14 @@ if( ${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows" )
 endif()
 include(${SOS_TOOLCHAIN_CMAKE_PATH}/sos-sdk.cmake)
 
-sos_sdk_clone_or_pull(./CMSIS_5 https://github.com/ARM-software/CMSIS_5.git ./)
+set(CMSIS_DIRECTORY ${CMAKE_SOURCE_DIR}/CMSIS_5)
+if(EXISTS  ${CMSIS_DIRECTORY})
+	message("CMSIS 5 project has already been cloned -- delete to pull again")
+else()
+	sos_sdk_clone_or_pull(${CMSIS_DIRECTORY} https://github.com/ARM-software/CMSIS_5.git ./)
+	sos_sdk_checkout(${CMSIS_DIRECTORY} "tags/5.4.0")
+endif()
+
 
 set(FOLDER_LIST
     ./CMSIS_5/CMSIS/DSP/Source/BasicMathFunctions
