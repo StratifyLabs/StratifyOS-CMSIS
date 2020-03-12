@@ -1,12 +1,13 @@
 #ifndef ARM_DSP_API_H
 #define ARM_DSP_API_H
 
-#include <mcu/types.h>
+#include <sos/api/sos_api.h>
 #include <mcu/arch/cmsis/arm_math.h>
 
 #define ARM_DSP_API_T 1
 
 typedef struct {
+	sos_api_t sos_api;
 	void (*fir)(const arm_fir_instance_q7 * S, q7_t * pSrc, q7_t * pDst, uint32_t blockSize);
 	void (*fir_init)(arm_fir_instance_q7 * S, uint16_t numTaps, q7_t * pCoeffs, q7_t * pState, uint32_t blockSize);
 	void (*mult)(q7_t * pSrcA, q7_t * pSrcB, q7_t * pDst, uint32_t blockSize);
@@ -36,6 +37,7 @@ typedef struct {
 
 
 typedef struct {
+	sos_api_t sos_api;
 	void (*fir)(const arm_fir_instance_q15 * S, q15_t * pSrc, q15_t * pDst, uint32_t blockSize);
 	void (*fir_fast)(const arm_fir_instance_q15 * S, q15_t * pSrc, q15_t * pDst, uint32_t blockSize);
 	arm_status (*fir_init)(arm_fir_instance_q15 * S, uint16_t numTaps, q15_t * pCoeffs, q15_t * pState, uint32_t blockSize);
@@ -114,6 +116,7 @@ typedef struct {
 } arm_dsp_api_q15_t;
 
 typedef struct {
+	sos_api_t sos_api;
 	void (*fir)(const arm_fir_instance_q31 * S, q31_t * pSrc, q31_t * pDst, uint32_t blockSize);
 	void (*fir_fast)(const arm_fir_instance_q31 * S, q31_t * pSrc, q31_t * pDst, uint32_t blockSize);
 	void (*fir_init)(arm_fir_instance_q31 * S, uint16_t numTaps, q31_t * pCoeffs, q31_t * pState, uint32_t blockSize);
@@ -190,6 +193,7 @@ typedef struct {
 } arm_dsp_api_q31_t;
 
 typedef struct {
+	sos_api_t sos_api;
 	void (*fir)(const arm_fir_instance_f32 * S, float32_t * pSrc, float32_t * pDst, uint32_t blockSize);
 	void (*fir_init)(arm_fir_instance_f32 * S, uint16_t numTaps, float32_t * pCoeffs, float32_t * pState, uint32_t blockSize);
 	void (*biquad_cascade_df1)(const arm_biquad_casd_df1_inst_f32 * S, float32_t * pSrc, float32_t * pDst, uint32_t blockSize);
@@ -259,12 +263,14 @@ typedef struct {
 } arm_dsp_api_f32_t;
 
 typedef struct {
+	sos_api_t sos_api;
 	void (*biquad_cascade_df2T)(const arm_biquad_cascade_df2T_instance_f64 * S, float64_t * pSrc, float64_t * pDst, uint32_t blockSize);
 	void (*biquad_cascade_df2T_init)(arm_biquad_cascade_df2T_instance_f64 * S, uint8_t numStages, float64_t * pCoeffs, float64_t * pState);
 	arm_status (*mat_inverse)(const arm_matrix_instance_f64 * src, arm_matrix_instance_f64 * dst);
 } arm_dsp_api_f64_t;
 
 typedef struct {
+	sos_api_t sos_api;
 	void (*float_to_q31)(float32_t * pSrc, q31_t * pDst, uint32_t blockSize);
 	void (*float_to_q15)(float32_t * pSrc, q15_t * pDst, uint32_t blockSize);
 	void (*float_to_q7)(float32_t * pSrc, q7_t * pDst, uint32_t blockSize);

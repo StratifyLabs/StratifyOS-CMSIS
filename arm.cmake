@@ -1,4 +1,5 @@
 
+include(${SOS_TOOLCHAIN_CMAKE_PATH}/sos-sdk.cmake)
 set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/CMSIS_5/CMSIS/DSP/Source)
 
 #Add sources to the project
@@ -15,12 +16,15 @@ set(FOLDER_LIST
     TransformFunctions  
 )
 foreach(FOLDER ${FOLDER_LIST})
-    set(SOURCES_PREFIX ${SOURCE_DIR}/${FOLDER})
-    add_subdirectory(${SOURCES_PREFIX})
-    list(APPEND SOURCELIST ${SOURCES})
+		sos_sdk_add_subdirectory(SOURCELIST ${SOURCE_DIR}/${FOLDER})
 endforeach()
 
-set(SOS_SOURCELIST ${SOURCELIST} ${CMAKE_SOURCE_DIR}/arm_dsp_api.h ${CMAKE_SOURCE_DIR}/arm_dsp_api.c ${CMAKE_SOURCE_DIR}/arm_dsp_api_declaration.h)
+set(SOS_SOURCELIST
+	${SOURCELIST}
+	${CMAKE_SOURCE_DIR}/arm_dsp_api.h
+	${CMAKE_SOURCE_DIR}/arm_dsp_api.c
+	${CMAKE_SOURCE_DIR}/arm_dsp_api_declaration.h
+	)
 
 # Linking with the kernel
 option(BUILD_KERNEL "Build library for linking with kernel (default)" ON)
