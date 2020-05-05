@@ -341,7 +341,7 @@
 #define arm_q15_to_q7 0
 #endif
 
-#define ARM_DSP_SOS_API(name_value) .sos_api = { .name = value_value, .version = 0x0001, .git_hash = SOS_GIT_HASH }
+#define ARM_DSP_SOS_API(name_value) .sos_api = { .name = name_value, .version = 0x0001, .git_hash = SOS_GIT_HASH }
 
 const arm_dsp_api_q7_t arm_dsp_api_q7 = {
 	ARM_DSP_SOS_API("arm_dsp_q7"),
